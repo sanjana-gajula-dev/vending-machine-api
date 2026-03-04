@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template_string
 
 app = Flask(__name__)
 items = {
@@ -7,6 +7,10 @@ items = {
     "C1": {"id": "C1", "name": "Water", "price_cents": 75, "quantity": 10}
 }
 
+@app.route("/")
+def home():
+    return "Vending Machine API is running!"
+    
 @app.route("/inventory", methods=["GET"])
 def get_inventory():
     machine_id = request.headers.get("X-Machine-Id")
